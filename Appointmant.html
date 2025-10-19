@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Appointment Form</title>
+
+    <!-- Appoint Form css -->
+    <link rel="stylesheet" href="./appointmant.css">
+    
+    <!-- Icon Font Stylesheet -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Appointment Form Start -->
+    <div class="container">
+        <h1>Doctor Appointment Form</h1>
+        <form id="appointmentForm" onsubmit="bookAppointment(event)">
+            <label for="name">Full Name:</label>
+            <input type="text" id="name" required>
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" required>
+
+            <label for="phone">Phone Number:</label>
+            <input type="tel" id="phone" required>
+
+            <label for="doctor">Select Doctor:</label>
+            <select id="doctor" required>
+                <option value="" disabled selected>Select a doctor</option>
+                <option value="Dr. Ibrahim">Dr. Ibrahim</option>
+                <option value="Dr. Mohib">Dr. Mohib</option>
+                <option value="Dr. Shaia">Dr. Shaia</option>
+                <option value="Dr. John">Dr. John</option>
+                <option value="Dr. Andoi">Dr. Andoi</option>
+                <option value="Dr. Sakib">Dr. Sakib</option>
+                <option value="Dr. Alisa">Dr. Alisa</option>
+            </select>
+
+            <label for="date">Appointment Date:</label>
+            <input type="date" id="date" required>
+
+            <label for="time">Appointment Time:</label>
+            <input type="time" id="time" required>
+
+            <!-- Update the button with proper submission -->
+            <button type="submit">Book Appointment</button>
+        </form>
+    </div>
+
+    <script>
+        // Disable past dates in the calendar
+        document.addEventListener('DOMContentLoaded', function () {
+            const today = new Date().toISOString().split('T')[0]; // Get today's date in 'YYYY-MM-DD' format
+            document.getElementById('date').setAttribute('min', today); // Set the 'min' attribute of the date input
+        });
+
+
+        // Function to store appointment in localStorage and redirect
+function bookAppointment(event) {
+    event.preventDefault();
+
+    // Get values from form
+    const name = document.getElementById('name').value;
+    const email = document.getElementById('email').value;
+    const phone = document.getElementById('phone').value;
+    const doctor = document.getElementById('doctor').value;
+    const date = document.getElementById('date').value;
+    const time = document.getElementById('time').value;
+
+    // Store individual fields in localStorage
+    localStorage.setItem('name', name);
+    localStorage.setItem('email', email);
+    localStorage.setItem('phone', phone);
+    localStorage.setItem('doctor', doctor);
+    localStorage.setItem('date', date);
+    localStorage.setItem('time', time);
+
+    // Redirect to the invoice page
+    window.location.href = './invoice.html';
+}
+
+    </script>
+</body>
+</html>
